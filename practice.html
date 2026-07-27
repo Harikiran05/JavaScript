@@ -1,0 +1,29 @@
+<html>
+  <head></head>
+  <body>
+    <input type="text" placeholder="Name" class="js-input-name"
+    onkeydown=" inputKey(event)
+    ">
+    <button onclick="
+    const inputElement = document.querySelector('.js-input-name');
+    document.querySelector('.js-name')
+    .innerHTML = `your Name is ${inputElement.value}`
+    ">Submit</button>
+    <p class="js-name"></p>
+    <input type="text" class="js-input"
+    onkeyup="
+    const input1Element = document.querySelector('.js-input');
+    document.querySelector('.js-o-key').innerHTML = input1Element.value;
+    ">
+    <p class="js-o-key"></p>
+    <script>
+      function inputKey(event){
+        if(event.key === 'Enter'){
+      const inputElement = document.querySelector('.js-input-name');
+    document.querySelector('.js-name')
+    .innerHTML = `your Name is ${inputElement.value}`
+      }
+    }
+    </script>
+  </body>
+</html>

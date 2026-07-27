@@ -9,8 +9,13 @@
     <button onclick="updateCartQuantity(-1)">Remove from Cart</button>
     <button onclick="updateCartQuantity(-2)">-2</button>
     <button onclick="updateCartQuantity(-3)">-3</button>
-    <button onclick="cartQuantity = 0; console.log(`Cart Quantity: ${cartQuantity}`)">Reset Cart</button>
+    <button onclick="
+    cartQuantity = 0; 
+    cartQuantityElement.innerHTML = `Cart Quantity: ${cartQuantity}`;
+    ">Reset Cart</button>
+    <p class="js-cart-quantity">Cart Quantity: 0</p>
     <script>
+      const cartQuantityElement = document.querySelector('.js-cart-quantity');
       let cartQuantity = 0;
       function updateCartQuantity(change) {
         if(cartQuantity + change > 10){
@@ -21,7 +26,7 @@
         }
         else{
         cartQuantity += change;
-        console.log(`Cart Quantity: ${cartQuantity}`);
+        cartQuantityElement.innerHTML = `Cart Quantity: ${cartQuantity}`;
         }
       }
     </script>

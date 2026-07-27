@@ -9,6 +9,7 @@
     score.wins = 0;
     score.losses = 0;
     localStorage.removeItem('score')">Reset Score</button>
+    <p class="js-score"></p>
     <script>
       let score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0 };
       function playGame(guess){
@@ -22,7 +23,7 @@
           console.log('you lose');
         }
         localStorage.setItem('score', JSON.stringify(score));
-        console.log(`wins: ${score.wins}, losses: ${score.losses}`)
+        document.querySelector('.js-score').innerHTML = `wins: ${score.wins}, losses: ${score.losses}`;
       }
    </script>
   </body>
