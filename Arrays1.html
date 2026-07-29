@@ -1,0 +1,55 @@
+<html>
+  <head></head>
+  <body>
+    <script>
+      const myArray = [10, 20 ,30];
+      myArray[2] = 99;
+      console.log(myArray)
+      function getLastValue(array){
+        const lastIndex= array.length-1;
+        return array[lastIndex];
+      }
+      console.log(getLastValue(myArray));
+      function swapArray(array){
+        const lastElement= array.length-1;
+        const lastValue= array[lastElement];
+        
+        const firstValue= array[0];
+        array[0] = lastValue;
+        array[lastElement] = firstValue;
+        return array;
+      }
+      console.log(swapArray(myArray));
+      for(let i=0; i<=10; i+=2){
+        console.log(i);
+      }
+      for(let i=5; i>=0; i--){
+        console.log(i);
+      }
+      let i=0;
+      while(i<10){
+        i= i+2;
+        console.log(i);
+      }
+      let a=5;
+      while(a>=0){
+        console.log(a);
+        a--;
+      }
+      const Array = [1, 2, 3];
+      const result=[];
+      for(let i=0; i<Array.length; i++);{
+        result.push(array[i]+1);
+      }
+      function addNum(array, num){
+        const result=[];
+        for(let i=0; i<array.length; i++){
+          result.push(array[i] + num);
+        }
+        return result;
+
+      }
+      
+    </script>
+  </body>
+</html>

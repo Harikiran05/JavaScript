@@ -1,0 +1,33 @@
+<html>
+  <head></head>
+  <body>
+    <p>To Do List</p>
+    <input class="js-input" placeholder = "Add a task">
+    <button onclick="
+    addToDO();
+    ">Add</button>
+    <div class="js-tolist"></div>
+    <script>
+      const todoList=['Make dinner', 'Wash dishes'];
+      renderHtml();
+      function renderHtml(){
+      let todoListHtml = '';
+      for(let i=0; i<todoList.length; i++){
+        const todo = todoList[i];
+        const html = `<p>${todo}</p>`;
+        todoListHtml += html;
+      }
+    
+      document.querySelector('.js-tolist').innerHTML = todoListHtml;
+  }
+      function addToDO(){
+        const inputElement = document.querySelector('.js-input');
+        const name = inputElement.value;
+        todoList.push(name);
+        console.log(todoList);
+        inputElement.value = '';
+        renderHtml();
+      }
+    </script>
+  </body>
+</html>
