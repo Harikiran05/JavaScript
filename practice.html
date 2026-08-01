@@ -24,6 +24,24 @@
     .innerHTML = `your Name is ${inputElement.value}`
       }
     }
+    let words=['hello', 'world', 'javascript', 'html', 'css'];
+    let index = -1;
+    for(let i=0; i<words.length; i++){
+      const word = words[i];
+      if(word === 'javascript'){
+        index = i;
+      }
+    }
+    console.log(index);
+    words = ['not', 'found'];
+    index = -1;
+    for(let i=0; i<words.length; i++){
+      const word = words[i];
+      if(word === 'javascript'){
+        index = i;
+      }
+    }
+    console.log(index);
     </script>
   </body>
 </html>
