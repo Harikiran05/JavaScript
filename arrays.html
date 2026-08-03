@@ -3,28 +3,50 @@
   <body>
     <p>To Do List</p>
     <input class="js-input" placeholder = "Add a task">
+    <input type="date" class="js-dueDate">
     <button onclick="
     addToDO();
     ">Add</button>
     <div class="js-tolist"></div>
     <script>
-      const todoList=['Make dinner', 'Wash dishes'];
+      const todoList=[{
+        name:'Make dinner',
+        dueDate: '03-08-2026'},
+      { 
+        name:'Wash dishes',
+        dueDate: '03-08-2026'
+    }];
       renderHtml();
       function renderHtml(){
       let todoListHtml = '';
-      for(let i=0; i<todoList.length; i++){
-        const todo = todoList[i];
-        const html = `<p>${todo}</p>`;
+      todoList.forEach((todoObject, index) => {
+        // const name = todoObject.name;
+        // const dueDate= todoObject.dueDate;
+        const {name, dueDate} =  todoObject;
+        const html = `
+        <div>${name}</div>
+        <div>${dueDate}</div>
+        <button onclick="deleteTask(${index})">Delete</button>
+        `;
         todoListHtml += html;
-      }
+      });
     
       document.querySelector('.js-tolist').innerHTML = todoListHtml;
   }
+      function deleteTask(index){
+        todoList.splice(index, 1);
+        renderHtml();
+      }
       function addToDO(){
         const inputElement = document.querySelector('.js-input');
         const name = inputElement.value;
-        todoList.push(name);
-        console.log(todoList);
+        const dateinputElement = document.querySelector('.js-dueDate');
+        const dueDate = dateinputElement.value;
+        todoList.push({
+          name, 
+          dueDate
+        });
+        dateinputElement.value = '';
         inputElement.value = '';
         renderHtml();
       }
