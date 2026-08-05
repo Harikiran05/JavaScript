@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Prime Numbers</title>
+  </head>
+  <body>
+    <h1>Prime Numbers</h1>
+    <p>This is a simple page to display prime numbers.</p>
+    <script>
+      function isPrime(num) {
+        if (num <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      }
+
+      function getPrimesUpTo(max) {
+        const primes = [];
+        for (let i = 2; i <= max; i++) {
+          if (isPrime(i)) {
+            primes.push(i);
+          }
+        }
+        return primes;
+      }
+
+      const primeNumbers = getPrimesUpTo(100);
+      console.log(primeNumbers);
+      </script>
+  </body>
+</html>
