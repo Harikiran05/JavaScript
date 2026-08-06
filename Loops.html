@@ -1,0 +1,38 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <script>
+      for (let i = 0; i < 5; i++) {
+        console.log(i);
+      }
+      let i = 0;
+      while (i < 5) {
+        console.log(i);
+        i++;
+      }
+      const fruits = ["apple", "banana", "mango"];
+      for (const fruit of fruits) {
+        console.log(fruit);
+      }
+      const person = { name: "Hari", age: 25 };
+      for (const key in person) {
+        console.log(key, person[key]);
+      }
+      for (let i = 0; i < 10; i++) {
+        if (i === 3) break;
+        console.log(i);
+      }
+      for (let i = 0; i < 5; i++) {
+        if (i === 2) continue;
+        console.log(i);
+      }
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 2; j++) {
+          console.log(`i=${i}, j=${j}`);
+        }
+      }
+    </script>
+  </body>
+</html>
