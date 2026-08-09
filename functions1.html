@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Prime Numbers</title>
+  </head>
+  <body>
+    <script>
+      function debounce(fn, delay) {
+    let timeoutId;                     // closure variable — persists between calls
+
+    return function(...args) {
+        clearTimeout(timeoutId);       // cancel the previous pending call
+        timeoutId = setTimeout(() => {
+            fn(...args);
+        }, delay);
+    };
+}
+
+function search(query) {
+    console.log("Searching for:", query);
+}
+const debouncedSearch = debounce(search, 300);
+
+debouncedSearch("h");
+debouncedSearch("ha");
+debouncedSearch("har");
+debouncedSearch("hari");
+// Only ONE search actually fires — "Searching for: hari" — 300ms after the last call
+    </script>
+  </body>
+</html>
