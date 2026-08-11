@@ -41,6 +41,32 @@ function arrowFunction(x) {
 }
 const square = arrowFunction(5);
 console.log(square);  // 25
+function createBankAccount(initialBalance) {
+    let balance = initialBalance;   // private variable, only accessible via returned methods
+
+    return {
+        deposit: function(amount) {
+            balance = balance + amount;
+            return balance;
+        },
+        withdraw: function(amount) {
+            if (amount > balance) {
+                return "Insufficient funds";
+            }
+            balance = balance - amount;
+            return balance;
+        },
+        getBalance: function() {
+            return balance;
+        }
+    };
+}
+
+const myAccount = createBankAccount(100);
+console.log(myAccount.deposit(50));    // 150
+console.log(myAccount.withdraw(30));   // 120
+console.log(myAccount.getBalance());   // 120
+console.log(myAccount.balance);        // undefined — can't access directly!
     </script>
   </body>
 </html>
