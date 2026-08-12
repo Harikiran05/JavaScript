@@ -1,0 +1,27 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <script>
+      let employeeName = "Hari";
+      let age = 23;
+      let isEmployee = true;
+      let hasAccessCard = true;
+
+      function checkAccess(age, isEmployee, hasAccessCard) {
+
+          if (age >= 18 && isEmployee && hasAccessCard) {
+              return "Access granted";
+          } else {
+              return "Access denied";
+          }
+      }
+
+      let result = checkAccess(age, isEmployee, hasAccessCard);
+
+      console.log(employeeName);
+      console.log(result);
+    </script>
+  </body>
+</html>
