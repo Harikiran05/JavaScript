@@ -22,6 +22,17 @@
 
       console.log(employeeName);
       console.log(result);
+      let roles = ["Admin", "Manager", "Employee"];
+      let access = roles.map(role => {
+          if (role === "Admin") {
+              return "Full access";
+          } else if (role === "Manager") {
+              return "Limited access";
+          } else {
+              return "No access";
+          }
+      });
+      console.log(access);
     </script>
   </body>
 </html>
