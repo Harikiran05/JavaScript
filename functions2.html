@@ -33,6 +33,16 @@
           }
       });
       console.log(access);
+      let roles1 = ["Admin", "Manager", "Employee"];
+      let access1 = ['Full access', 'Limited access', 'No access'];
+      if(userName === 'Admin' && password === 'admin123') {
+          console.log(access1[0]);
+      } else if(userName === 'Manager' && password === 'manager123') {
+          console.log(access1[1]);
+      } else {
+          console.log(access1[2]);
+      }
+      
     </script>
   </body>
 </html>
