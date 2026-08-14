@@ -21,6 +21,24 @@
       let result = checkAccess(age, isEmployee, hasAccessCard);
 
         console.log(result);  // Output: "Access granted"
+        function scopeTypes(){
+          let localVariable = "I am a local variable";
+          console.log(localVariable); // Accessible here
+        }
+        let globalVariable = "I am a global variable";
+        console.log(globalVariable); // Accessible here
+        scopeTypes();
+        function closureExample() {
+          let outerVariable = "I am from the outer function";
+
+          function innerFunction() {
+              console.log(outerVariable); // Accessing outer function variable
+          }
+
+          return innerFunction;
+      }
+      let closureFunc = closureExample();
+      closureFunc(); // This will log the value of outerVariable
     </script>
   </body>
 </html>
