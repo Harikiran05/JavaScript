@@ -20,29 +20,7 @@
 
       let result = checkAccess(age, isEmployee, hasAccessCard);
 
-      console.log(employeeName);
-      console.log(result);
-      let roles = ["Admin", "Manager", "Employee"];
-      let access = roles.map(role => {
-          if (role === "Admin") {
-              return "Full access";
-          } else if (role === "Manager") {
-              return "Limited access";
-          } else {
-              return "No access";
-          }
-      });
-      console.log(access);
-      let roles1 = ["Admin", "Manager", "Employee"];
-      let access1 = ['Full access', 'Limited access', 'No access'];
-      if(userName === 'Admin' && password === 'admin123') {
-          console.log(access1[0]);
-      } else if(userName === 'Manager' && password === 'manager123') {
-          console.log(access1[1]);
-      } else {
-          console.log(access1[2]);
-      }
-      
+        console.log(result);  // Output: "Access granted"
     </script>
   </body>
 </html>
