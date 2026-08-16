@@ -5,6 +5,7 @@
   <body>
     
     <button  onclick="" class="btn">Click me</button>
+    <button class="sub-js-btn">subscribe</button>
     <script>
       const buttonelement = document.querySelector('.btn');
       buttonelement.addEventListener('click', ()=>{
@@ -24,7 +25,10 @@
       ].forEach(function(value){
         console.log(value);
       });
-      
+      const subButton = document.querySelector('.sub-js-btn');
+      subButton.addEventListener('click', function(){
+        subButton.innerHTML = 'Subscribed';
+      });
     </script>
   </body>
 </html>
