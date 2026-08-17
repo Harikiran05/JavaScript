@@ -21,11 +21,22 @@
     <script>
       let score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0, ties: 0 };
       updateScoreElement();
-        function playGame(playerMove){
-          let computerMove = pickComputerMove();
-          let result;
-          if(playerMove === computerMove){
-            result = 'tie';
+      document.body.addEventListener('keydown', (event) => {
+        if(event.key === 'r'){
+          playGame('rock');
+        }
+        else if(event.key === 'p'){
+          playGame('paper');
+        }
+        else if(event.key === 's'){
+          playGame('scissors');
+        }
+      });
+      function playGame(playerMove){
+        let computerMove = pickComputerMove();
+        let result;
+        if(playerMove === computerMove){
+          result = 'tie';
           }
           else if(
             (playerMove === 'rock' && computerMove === 'scissors') ||
