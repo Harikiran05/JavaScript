@@ -37,6 +37,11 @@
         todoList.splice(index, 1);
         renderHtml();
       }
+      document.querySelector('.js-input').addEventListener('keydown', (event) => {
+        if(event.key === 'Enter'){
+          addToDO();
+        }
+      });
       function addToDO(){
         const inputElement = document.querySelector('.js-input');
         const name = inputElement.value;
