@@ -656,5 +656,21 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "f1c3e5d0-4b6e-4a2f-8c7b-9f1e2d3a4b5c",
+    image: "images/products/backpack.jpg",
+    name: "Backpack with Multiple Compartments",
+    rating: {
+      stars: 4.5,
+      count: 1200
+    },
+    priceCents: 3999,
+    keywords: [
+      "backpacks",
+      "travel",
+      "school",
+      "unisex"
+    ]
   }
 ];
