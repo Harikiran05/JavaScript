@@ -5,10 +5,7 @@ import {hello} from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import {deliveryOptions} from '../data/deliveryOptions.js';
 
-hello();
-const today=dayjs();
-const deliveryDate = today.add(7, 'days');
-const formattedDeliveryDate = deliveryDate.format('dddd, MMMM D');
+
 
 let cartSummaryHTML = '';
 
@@ -22,9 +19,11 @@ cart.forEach((cartItem)=>{
     }
   });
 const deliveryOptionID = cartItem.deliveryOptionId;
+
 let deliveryOption;
-deliveryOptions.forEach((option)=>{
-  if(option.id === deliveryOptionId){
+
+deliveryOptions.forEach((option) => {
+  if (option.id === Number(deliveryOptionID)) {
     deliveryOption = option;
   }
 });
@@ -167,9 +166,35 @@ document.querySelectorAll('.js-save-link')
     });
   });
   
-  document.querySelectorAll('.js-delivery-option').forEach((option)=>{
-    option.addEventListener('click', ()=>{
-      const {productId, deliveryOptionID}= option.dataset
-      updateDeliveryOption(option.dataset.productId, option.querySelector('.delivery-option-input').dataset.deliveryOptionId);
+document.querySelectorAll('.js-delivery-option').forEach((option) => {
+
+  option.addEventListener('click', () => {
+
+    const productId = option.dataset.productId;
+    const deliveryOptionId = option.dataset.deliveryOptionId;
+
+    updateDeliveryOption(productId, deliveryOptionId);
+
+    const selectedDeliveryOption = deliveryOptions.find((deliveryOption) => {
+      return deliveryOption.id === Number(deliveryOptionId);
     });
+
+    const today = dayjs();
+
+    const deliveryDate = today.add(
+      selectedDeliveryOption.deliveryTime,
+      'days'
+    );
+
+    const dateString = deliveryDate.format('dddd, MMMM D');
+
+    const container = document.querySelector(
+      `.js-cart-item-container-${productId}`
+    );
+
+    container.querySelector('.delivery-date').innerHTML =
+      `Delivery date: ${dateString}`;
+
   });
+
+});
