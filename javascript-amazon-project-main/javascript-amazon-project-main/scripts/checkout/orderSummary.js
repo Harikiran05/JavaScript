@@ -159,7 +159,7 @@ document.querySelectorAll('.js-save-link')
 
       const quantityLabel = document.querySelector(`.js-quantity-label-${productId}`);
       quantityLabel.innerHTML = newQuantity;
-      updateCartQuantity();
+      // updateCartQuantity();
     });
   });
   
