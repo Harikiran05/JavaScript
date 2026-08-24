@@ -119,15 +119,15 @@ return html;
 }
 
 
-function updateCartQuantity(){
-let cartQuantity = 0;
+// function updateCartQuantity(){
+// let cartQuantity = 0;
 
-cart.forEach((cartItem)=>{
-  cartQuantity += cartItem.quantity;
-});
-document.querySelector('.js-return-to-home-link').innerHTML = `${cartQuantity} items`;
-}
-updateCartQuantity();
+// cart.forEach((cartItem)=>{
+//   cartQuantity += cartItem.quantity;
+// });
+// document.querySelector('.js-return-to-home-link').innerHTML = `${cartQuantity} items`;
+// }
+// updateCartQuantity();
 
 document.querySelectorAll('.js-update-link').forEach((link)=>{
   link.addEventListener('click', () =>{

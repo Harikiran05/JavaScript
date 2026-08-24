@@ -59,6 +59,6 @@ import formatCurrency from "../utils/money.js";
             <button class="place-order-button button-primary">
               Place your order
             </button> `;
-            document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
+            document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML
 
 }
