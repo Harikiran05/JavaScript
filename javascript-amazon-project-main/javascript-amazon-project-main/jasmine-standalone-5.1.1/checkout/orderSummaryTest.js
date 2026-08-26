@@ -4,6 +4,9 @@ import { loadFromStorage } from "../../data/cart.js";
 
 
 describe('test suite: renderOrderSummary', () =>{
+
+  
+
   it('displays the cart', () =>{
     document.querySelector('.js-test-container').innerHTML =`
     <div class="js-order-summary"></div>
@@ -40,6 +43,8 @@ describe('test suite: renderOrderSummary', () =>{
         expect(
         document.querySelector(`.js-product-quantity-${productId2}`).innerText
       ).toContain('Quantity: 1');
+
+        document.querySelector('.js-test-container').innerHTML = '';
   });
 
 
@@ -76,6 +81,7 @@ describe('test suite: renderOrderSummary', () =>{
           document.querySelectorAll('.js-cart-item-container').length)
           .toEqual(1);
       
+          document.querySelector('.js-test-container').innerHTML = '';
     });
 
 });
