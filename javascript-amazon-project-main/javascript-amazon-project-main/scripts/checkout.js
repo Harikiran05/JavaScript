@@ -9,14 +9,18 @@ import { loadCart } from "../data/cart.js";
 
 
 async function loadPage() {
-  
+  try{
+    // throw 'error1';
+    await loadProductsFetch();
 
-  await loadProductsFetch()
-  await new Promise((resolve) => {
-    loadCart(() => {
-      resolve();
+    const value = await new Promise((resolve) =>{
+      loadCart(() =>{
+        resolve()
+      });
     });
-  })
+  } catch(error){
+    console.log('error, try later');
+  }
 
   renderCheckoutHeader();
   renderOrderSummary();
