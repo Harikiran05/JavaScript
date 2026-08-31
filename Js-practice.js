@@ -1,3 +1,5 @@
+
+
 let globalCount = 0;
 
 function processUser(user) {
@@ -37,3 +39,53 @@ currentUser.age = '25';
 currentUser.id = 101;
 
 processUser(currentUser);
+
+// Functions
+
+console.log(greetDeclaration("Hari"));
+function greetDeclaration(name) {
+ return `Hello, ${name}!`;
+}
+const greetExpression = function (name = "friend") {
+ return `Hi, ${name}!`;
+};
+const sumAll = (...numbers) => {
+ return numbers.reduce((total, n) => total + n, 0);
+};
+function createCounter() {
+ let count = 0;
+ return function () {
+ count++;
+ return count;
+ };
+}
+const counter = createCounter();
+console.log(counter());
+console.log(counter());
+function processArray(arr, callback) {
+ const results = [];
+ for (const item of arr) {
+ results.push(callback(item));
+ }
+ return results;
+}
+const doubled = processArray([1, 2, 3], function double(n) {
+ return n * 2;
+});
+function addPure(a, b) {
+ return a + b;
+}
+const config = (function () {
+ const secretKey = "abc123";
+ return { key: secretKey };
+})();
+function doesNothing() {
+ console.log("side effect only");
+}
+const nothing = doesNothing();
+console.log(greetExpression());
+console.log(sumAll(1, 2, 3, 4));
+console.log(doubled);
+console.log(addPure(2, 3));
+console.log(config);
+console.log(nothing);
