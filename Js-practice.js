@@ -1,4 +1,4 @@
-
+// Variables
 
 let globalCount = 0;
 
@@ -89,3 +89,58 @@ console.log(doubled);
 console.log(addPure(2, 3));
 console.log(config);
 console.log(nothing);
+
+
+// Arrays
+
+const scoresA = [80, 90, 100, 70];
+const scoresB = [85, 95];
+
+const allScores = [...scoresA, ...scoresB];
+console.log(allScores);
+
+const mutatingDemo = [...allScores];
+mutatingDemo.push(55);
+mutatingDemo.unshift(10);
+mutatingDemo.pop();
+mutatingDemo.shift();
+mutatingDemo.splice(1, 1, 999);
+mutatingDemo.sort((a,b) => a - b);
+mutatingDemo.reverse();
+mutatingDemo.fill(0, 0, 1);
+
+const sliced = allScores.slice(1, 3);
+const combined = scoresA.concat(scoresB);
+const nested = [[1,2], [3, [4, 5]]];
+const flatOnce = nested.flat();
+const flatMapped = allScores.flatMap((n) => [n, n/2]);
+
+const [first, second, ...restScores] = allScores;
+
+for (let i=0; i < allScores.length; i++){
+  console.log("for loop:", allScores[i]);
+}
+for(const score of allScores){
+  console.log("for...of", score);
+}
+for(const index in allScores){
+  console.log("for...in (index):", index);
+}
+allScores.forEach((score) => console.log("forEach:", score));
+
+const passed = allScores.filter((score) => score >= 60);
+const grades = passed.map((score) => (score >= 90 ? "A" : "B"));
+const total = allScores.reduce((sum, score) => sum+score, 0);
+
+const firstPerfect = allScores.find((s) => s === 100);
+const firstPerfectIndex = allScores.findIndex((s) => s === 100);
+const has45 = allScores.indexOf(45);
+const includes60 = allScores.includes(60);
+const anyFailed = allScores.some((s) => s < 60);
+const allPassed = allScores.every((s) => s >= 60);
+
+console.log({
+  allScores, mutatingDemo, sliced, combined, flatOnce, flatMapped, 
+  first, second, restScores, passed, grades, total,
+  firstPerfect, firstPerfectIndex, has45, includes60, anyFailed, allPassed
+});
