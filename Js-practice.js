@@ -144,3 +144,56 @@ console.log({
   first, second, restScores, passed, grades, total,
   firstPerfect, firstPerfectIndex, has45, includes60, anyFailed, allPassed
 });
+
+
+// Objects
+
+const name = "Hari";
+const age = 25;
+
+const basePerson = {
+  name,
+  age,
+  ["role_" + "dev"]: "Frontend Developer",
+  greet(){
+    return `Hi I'm ${this.name}`;
+  }
+};
+
+const contactInfo = { email: "hariexample@gmail.com", city: "Hyderabad"};
+
+const fullPerson = {...basePerson, ...contactInfo, age : 26};
+
+console.log(fullPerson.name);
+console.log(fullPerson["email"]);
+
+const { name : userName, age : userAge= 0, city} = fullPerson;
+console.log(userName, userAge, city);
+
+console.log(Object.keys(fullPerson));
+console.log(Object.values(fullPerson));
+console.log(Object.entries(fullPerson));
+
+const merged = Object.assign({}, basePerson, contactInfo);
+console.log(merged);
+
+const frozenConfig = Object.freeze({ theme: "dark"});
+frozenConfig.theme = "light";
+console.log(frozenConfig.theme);
+
+
+const animal = {
+  makeSound(){
+    return "some generic sound";
+  }
+};
+
+const dog = Object.create(animal);
+dog.bark = function (){
+  return "Woof!";
+};
+
+console.log(dog.makeSound());
+console.log(dog.bark());
+console.log(Object.getPrototypeOf(dog) === animal);
+console.log(dog,__proto__ === animal);
