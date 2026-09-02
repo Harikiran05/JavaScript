@@ -1,16 +1,15 @@
 <html>
   <head></head>
   <body>
-    <form id="todoForm">
-      <input 
-      id="todoInput"
-      placeholder="Enter Task"
-      >
-      <button type="submit">
-        Add
-      </button>
-    </form>
-
+    <h1>My Todo List</h1> 
+    
+     <form id="todo-form"> 
+      <div> <input type="text" name="task" placeholder="Enter a task..." autocomplete="off" > 
+        <span id="charCount">0 chars</span> 
+      </div> 
+      <button type="submit"> Add Task </button> 
+    </form> 
+    <ul id="todo-list"></ul>
     <ul id="todoList"></ul>
     <script src="Js-practice.js"></script>
   </body>

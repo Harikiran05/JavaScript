@@ -196,53 +196,116 @@ dog.bark = function (){
 console.log(dog.makeSound());
 console.log(dog.bark());
 console.log(Object.getPrototypeOf(dog) === animal);
-console.log(dog,__proto__ === animal);
+console.log(dog.__proto__ === animal);
 
 // DOM
 
-const form  = document.querySelector('#todoForm');
-const input = document.querySelector('#todoInput');
-const list  =  document.querySelector('#todoList');
+// const form  = document.querySelector('#todoForm');
+// const input = document.querySelector('#todoInput');
+// const list  =  document.querySelector('#todoList');
 
-form.addEventListener('submit', event =>{
-  event.preventDefault();
+// form.addEventListener('submit', event =>{
+//   event.preventDefault();
 
-  const text = input.value.trim();
+//   const text = input.value.trim();
 
-  if(!text) return;
+//   if(!text) return;
 
-  const li = document.createElement('li');
+//   const li = document.createElement('li');
 
-  li.classList.add('todo-item');
+//   li.classList.add('todo-item');
 
-  li.dataset.id = crypto.randomUUID();
+//   li.dataset.id = crypto.randomUUID();
 
-  const span = document.createElement('span');
+//   const span = document.createElement('span');
 
-  span.textContent = text;
+//   span.textContent = text;
 
-  const deleteButton = document.createElement('button');
+//   const deleteButton = document.createElement('button');
 
-  deleteButton.textContent = 'Delete';
+//   deleteButton.textContent = 'Delete';
 
-  deleteButton.dataset.action = 'delete';
+//   deleteButton.dataset.action = 'delete';
 
-  li.append(span, deleteButton);
+//   li.append(span, deleteButton);
 
-  list.append(li);
+//   list.append(li);
 
-  input.value = '';
-});
+//   input.value = '';
+// });
 
-list.addEventListener('click', event =>{
-  const button = event.target.closest('[data-action="delete"]');
+// list.addEventListener('click', event =>{
+//   const button = event.target.closest('[data-action="delete"]');
 
-  if (!button) return;
+//   if (!button) return;
 
-  const todo = button.closest('.todo-item');
+//   const todo = button.closest('.todo-item');
 
-  if(!todo) return;
+//   if(!todo) return;
 
-  todo.remove();
+//   todo.remove();
 
+// });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const list = document.querySelector('#todo-list');
+  const form = document.querySelector('#todo-form');
+  const input1 = form.querySelector("input[name='task']");
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const taskText = input1.value.trim();
+
+    if (!taskText) return;
+
+    const li = document.createElement('li');
+    li.classList.add('todo-item');
+    li.dataset.status = 'pending';
+    li.setAttribute("title", "Click to toggle, double-click to delete");
+
+    const label = document.createElement('span');
+    label.textContent = taskText;
+
+    li.appendChild(label);
+    list.appendChild(li);
+
+    input1.value = '';
+  });
+
+  list.addEventListener('click', (event) => {
+    const item = event.target.closest('.todo-item');
+    if (!item) return;
+
+    item.classList.toggle("done");
+    item.dataset.status = item.classList.contains("done") ? "done" : "pending";
+  });
+
+  list.addEventListener('dblclick', (event) => {
+    event.stopPropagation();
+    const item = event.target.closest('.todo-item');
+    if (item) item.remove();
+  });
+
+  input1.addEventListener("input", (event) => {
+    const charCount = event.target.value.length;
+    document.querySelector("#charCount").textContent = `Character count: ${charCount}`;
+  });
+
+  input1.addEventListener("keydown", (event) => {
+    if(event.key === "Escape") input1.value = '';
+  });
+
+  window.addEventListener("resize", () => {
+    console.log("Window resized to:",  window.innerWidth);
+  });
+
+  window.addEventListener("scroll", () => {
+    console.log("Window scrolled to:", window.scrollY);
+  });
+
+  window.addEventListener("load", () => {
+    console.log("Window fully loaded");
+  });
 });
