@@ -197,3 +197,52 @@ console.log(dog.makeSound());
 console.log(dog.bark());
 console.log(Object.getPrototypeOf(dog) === animal);
 console.log(dog,__proto__ === animal);
+
+// DOM
+
+const form  = document.querySelector('#todoForm');
+const input = document.querySelector('#todoInput');
+const list  =  document.querySelector('#todoList');
+
+form.addEventListener('submit', event =>{
+  event.preventDefault();
+
+  const text = input.value.trim();
+
+  if(!text) return;
+
+  const li = document.createElement('li');
+
+  li.classList.add('todo-item');
+
+  li.dataset.id = crypto.randomUUID();
+
+  const span = document.createElement('span');
+
+  span.textContent = text;
+
+  const deleteButton = document.createElement('button');
+
+  deleteButton.textContent = 'Delete';
+
+  deleteButton.dataset.action = 'delete';
+
+  li.append(span, deleteButton);
+
+  list.append(li);
+
+  input.value = '';
+});
+
+list.addEventListener('click', event =>{
+  const button = event.target.closest('[data-action="delete"]');
+
+  if (!button) return;
+
+  const todo = button.closest('.todo-item');
+
+  if(!todo) return;
+
+  todo.remove();
+
+});
