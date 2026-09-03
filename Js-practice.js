@@ -309,3 +309,80 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Window fully loaded");
   });
 });
+
+// Classes
+
+class Animal {
+  #energy;
+
+  static kingdom = "Animalia";
+
+  constructor(name, energy=100){
+    this.name= name;
+    this.#energy = energy;
+  }
+
+  get energy() {
+    return this.#energy;
+  }
+
+  set energy(value) {
+    this.#energy = value < 0 ? 0 : value;
+  }
+
+  makeSound(){
+    return `${this.name} makes a generic sound`;
+  }
+
+  static describeKingdom(){
+    return `All animals belong to ${Animal.kingdom}`;
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, breed) {
+    super(name, 120);
+    this.breed = breed;
+  }
+  makeSound(){
+    return `${this.name} barks: Woof`;
+  }
+
+  fetch() {
+    this.energy -= 10;
+    return `${super.makeSound()} ...then ${this.name} fetches the ball (energy: ${this.energy})`;
+  }
+}
+
+const canSwim = {
+  swin(){
+    return `${this.name} paddles through the water`;
+  }
+};
+
+function createDuck(name){
+  return Object.assign({name}, canSwim, {
+    quack(){
+      return `${this.name} says quack!`;
+    }
+  });
+}
+
+const genericAnimal = new Animal("Creature");
+const rex = new Dog("Rex", "Labrador");
+const duck = createDuck("Donald");
+
+console.log(genericAnimal.makeSound());
+console.log(rex.makeSound());
+console.log(rex.fetch());
+console.log(rex.energy);
+rex.energy = -50;
+console.log(rex.energy);
+
+console.log(Animal.describeKingdom());
+console.log(Dog.kingdom);
+
+console.log(duck.swin());
+console.log(duck.quack());
+
+console.log(rex instanceof Dog, rex instanceof Animal);
