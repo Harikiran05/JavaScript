@@ -389,71 +389,161 @@ console.log(rex instanceof Dog, rex instanceof Animal);
 
 // Error Handling
 
-class ValidationError extends Error {
- constructor(message, field) {
- super(message);
- this.name = "ValidationError";
- this.field = field;
- }
+// class ValidationError extends Error {
+//  constructor(message, field) {
+//  super(message);
+//  this.name = "ValidationError";
+//  this.field = field;
+//  }
+// }
+// class NotFoundError extends Error {
+//  constructor(message) {
+//  super(message);
+//  this.name = "NotFoundError";
+//  }
+// }
+// function validateAge(age) {
+//  if (typeof age !== "number") {
+//  throw new TypeError("Age must be a number");
+//  }
+//  if (age < 0 || age > 150) {
+//  throw new RangeError("Age must be between 0 and 150");
+//  }
+//  if (age < 18) {
+//  throw new ValidationError("User must be an adult", "age");
+//  }
+//  return true;
+// }
+// function findUser(users, id) {
+//  const user = users.find((u) => u.id === id);
+//  if (!user) {
+//  throw new NotFoundError(`User with id ${id} not found`);
+//  }
+//  return user;
+// }
+// function processUser(users, id, age) {
+//  try {
+//   const user = findUser(users, id);
+//   validateAge(age);
+//   console.log(`${user.name} is valid and processed`);
+//   return { success: true, user };
+//  } catch (error) {
+//  if (error instanceof ValidationError) {
+//   console.log(`Validation failed on field '${error.field}': ${error.message}`);
+//  } else if (error instanceof NotFoundError) {
+//   console.log(`Lookup failed: ${error.message}`);
+//  } else if (error instanceof TypeError) {
+//   console.log(`Type problem: ${error.message}`);
+//  } else if (error instanceof RangeError) {
+//   console.log(`Range problem: ${error.message}`);
+//  } else {
+//   console.log(`Unexpected error: ${error.message}`);
+//  }
+//  return { success: false, error };
+//  } finally {
+//  console.log(`Finished attempting to process user id ${id}`);
+//  }
+// }
+// const users = [{ id: 1, name: "Hari" }];
+// processUser(users, 1, 16);
+// processUser(users, 99, 25);
+// processUser(users, 1, "twenty");
+// processUser(users, 1, 25);
+// window.onerror = function (message, source, lineno, colno, error) {
+//  console.log(`Global browser error caught: ${message} at ${lineno}:${colno}`);
+// return true;
+// };
+// process.on("uncaughtException", (error) => {
+//  console.log(`Global Node error caught: ${error.message}`);
+//  process.exit(1);
+// });
+
+
+// Fetch API
+
+async function createUser(){
+  const user = {
+    name: "Hari",
+    age: 23
+  };
+
+  const response = await fetch("https://jsonplaceholder.typicode.com/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(user)
+  }
+  );
+
+  const data = await response.json();
+  console.log("User created:", data);
 }
-class NotFoundError extends Error {
- constructor(message) {
- super(message);
- this.name = "NotFoundError";
- }
+
+createUser();
+
+async function getProducts() {
+
+    try {
+
+        const response = await fetch(
+            "https://api.example.com/products"
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                `Request failed: ${response.status}`
+            );
+        }
+
+        const products = await response.json();
+
+        console.log(products);
+
+    } catch (error) {
+
+        console.error(error);
+    }
 }
-function validateAge(age) {
- if (typeof age !== "number") {
- throw new TypeError("Age must be a number");
- }
- if (age < 0 || age > 150) {
- throw new RangeError("Age must be between 0 and 150");
- }
- if (age < 18) {
- throw new ValidationError("User must be an adult", "age");
- }
- return true;
+
+getProducts();
+
+async function createProduct() {
+
+    const product = {
+        name: "Laptop",
+        price: 50000
+    };
+
+    try {
+
+        const response = await fetch(
+            "https://api.example.com/products",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(product)
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                `Request failed: ${response.status}`
+            );
+        }
+
+        const createdProduct =
+            await response.json();
+
+        console.log(createdProduct);
+
+    } catch (error) {
+
+        console.error(error);
+    }
 }
-function findUser(users, id) {
- const user = users.find((u) => u.id === id);
- if (!user) {
- throw new NotFoundError(`User with id ${id} not found`);
- }
- return user;
-}
-function processUser(users, id, age) {
- try {
-  const user = findUser(users, id);
-  validateAge(age);
-  console.log(`${user.name} is valid and processed`);
-  return { success: true, user };
- } catch (error) {
- if (error instanceof ValidationError) {
-  console.log(`Validation failed on field '${error.field}': ${error.message}`);
- } else if (error instanceof NotFoundError) {
-  console.log(`Lookup failed: ${error.message}`);
- } else if (error instanceof TypeError) {
-  console.log(`Type problem: ${error.message}`);
- } else if (error instanceof RangeError) {
-  console.log(`Range problem: ${error.message}`);
- } else {
-  console.log(`Unexpected error: ${error.message}`);
- }
- return { success: false, error };
- } finally {
- console.log(`Finished attempting to process user id ${id}`);
- }
-}
-const users = [{ id: 1, name: "Hari" }];
-processUser(users, 1, 16);
-processUser(users, 99, 25);
-processUser(users, 1, "twenty");
-processUser(users, 1, 25);
-window.onerror = function (message, source, lineno, colno, error) {
- console.log(`Global browser error caught: ${message} at ${lineno}:${colno}`);
-return true;
-};
-process.on("uncaughtException", (error) => {
- console.log(`Global Node error caught: ${error.message}`);
- process.exit(1);
-});
+createProduct();
