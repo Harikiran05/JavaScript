@@ -547,3 +547,81 @@ async function createProduct() {
     }
 }
 createProduct();
+
+// api
+
+async function getUser(id, signal) {
+ const response = await fetch(`https://api.example.com/users/${id}`, {
+ method: "GET",
+ headers: { "Accept": "application/json" },
+ signal
+ });
+ if (!response.ok) {
+ throw new Error(`Request failed with status ${response.status}`);
+ }
+ const user = await response.json();
+ return user;
+}
+async function createPost(postData, signal) {
+ const response = await fetch("https://api.example.com/posts", {
+ method: "POST",
+ headers: { "Content-Type": "application/json" },
+ body: JSON.stringify(postData),
+ signal
+ });
+ console.log("Status:", response.status);
+ console.log("Content-Type header:", response.headers.get("content-type"));
+ if (!response.ok) {
+ const errorText = await response.text();
+ throw new Error(`Post creation failed: ${errorText}`);
+ }
+ return response.json();
+}
+async function downloadAvatar(url, signal) {
+ const response = await fetch(url, { signal });
+ const blob = await response.blob();
+ return blob;
+}
+const controller = new AbortController();
+const cancelButton = document.querySelector("#cancel-btn");
+cancelButton.addEventListener("click", () => {
+ controller.abort();
+ console.log("Request cancelled by user");
+});
+async function loadDashboard() {
+ try {
+ const user = await getUser(1, controller.signal);
+ console.log("User fetched:", user);
+ const newPost = await createPost(
+ { title: "Hello", body: "First post" },
+ controller.signal
+ );
+ console.log("Post created:", newPost);
+ const avatarBlob = await downloadAvatar(
+ "https://api.example.com/avatar.png",
+ controller.signal
+ );
+ console.log("Avatar size (bytes):", avatarBlob.size);
+ } catch (err) {
+ if (err.name === "AbortError") {
+ console.log("Fetch was aborted");
+ } else {
+ console.log("Dashboard error:", err.message);
+
+ }
+ }
+}
+loadDashboard();
+async function getUserAxios(id) {
+ try {
+ const response = await axios.get(`https://api.example.com/users/${id}`);
+ return response.data;
+ } catch (err) {
+ console.log("Axios error:", err.response?.status, err.message);
+ }
+}
+async function createPostAxios(postData) {
+ const response = await axios.post("https://api.example.com/posts", postData);
+ return response.data;
+
+}
